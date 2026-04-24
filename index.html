@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff;--off:#F7F8FB;--off2:#F2F4F8;
+  --bg:#FBFAF5;--off:#F7F8FB;--off2:#F2F4F8;
   --ink:#0A0B10;--ink-soft:#1F2430;--muted:#5A6272;--subtle:#8A91A1;
   --faint:#C7CCD6;--line:#ECEEF2;--line-s:#DEE1E8;
   --pri:#0A3A66;--pri2:#12558F;--pri-faint:#F0F4F9;
@@ -18,18 +18,19 @@
   --mono:'SF Mono','JetBrains Mono','Menlo',monospace;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{margin:0;padding:0}
+body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::selection{background:var(--pri);color:#fff}
 .shell{max-width:1100px;margin:0 auto;padding:112px 56px 160px}
 a{color:var(--pri);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
 a:hover{border-bottom-color:var(--pri)}
-
+ 
 /* ATOMS */
 .eyebrow-bar{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pri)}
 .eyebrow-bar::before{content:'';display:inline-block;width:28px;height:2px;background:var(--pri)}
 .gold-bar{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .gold-bar::before{content:'';display:inline-block;width:28px;height:2px;background:var(--gold)}
-
+ 
 /* HEADER */
 header.top{padding-bottom:88px;margin-bottom:112px;border-bottom:1px solid var(--line)}
 header.top .eyebrow-bar{margin-bottom:36px}
@@ -39,25 +40,47 @@ header.top .deck{font-size:21px;line-height:1.55;color:var(--muted);font-weight:
 header.top .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;padding-top:40px;border-top:1px solid var(--line)}
 header.top .m-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);margin-bottom:10px}
 header.top .m-value{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
-
+ 
 /* VERDICT BOX */
-.verdict{border:2px solid var(--blk);border-radius:20px;padding:64px 56px;margin-bottom:112px;background:var(--bg)}
+.verdict{position:relative;border-radius:28px;padding:64px 56px;margin-bottom:112px;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  backdrop-filter:blur(30px) saturate(180%);
+  border:1px solid rgba(255,255,255,.85);
+  border-top:1px solid rgba(255,255,255,.98);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 -1px 0 rgba(10,11,16,.03) inset,
+    0 8px 24px rgba(10,11,16,.04),
+    0 24px 60px rgba(10,11,16,.06)}
 .verdict .v-eye{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blk);margin-bottom:20px}
 .verdict .v-eye .tag{background:var(--blk);color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em;padding:4px 11px;border-radius:100px}
 .verdict h2{font-size:32px;font-weight:700;letter-spacing:-.024em;color:var(--ink);margin:0 0 14px;max-width:780px;line-height:1.14}
 .verdict .v-lede{font-size:16px;color:var(--muted);line-height:1.65;max-width:720px;margin:0 0 40px;letter-spacing:-.004em}
 .blackfill{background:var(--blk);color:#fff;border-radius:14px;padding:30px 34px;font-size:15.5px;line-height:1.7;letter-spacing:-.005em}
 .blackfill strong{color:#93C5FD;font-weight:600}
-
+ 
 /* SCORE GRID */
 .score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.score-card{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:28px 30px}
+.score-card{position:relative;border-radius:18px;padding:28px 30px;
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(20px) saturate(175%);
+  backdrop-filter:blur(20px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 4px 14px rgba(10,11,16,.04),
+    0 12px 32px rgba(10,11,16,.05);
+  transition:transform .2s ease, box-shadow .2s ease}
+.score-card:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 6px 18px rgba(10,11,16,.06),0 16px 44px rgba(10,11,16,.08)}
 .score-card .s-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pri);margin-bottom:14px}
 .score-card .s-value{font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.014em;margin-bottom:10px}
 .score-card .s-sub{font-size:14px;color:var(--muted);line-height:1.6}
-.score-card.critical{border:2px solid #C0392B;background:#FFF8F7}
+.score-card.critical{background:rgba(255,248,247,.7);border:1px solid rgba(192,57,43,.35);border-top:1px solid rgba(255,255,255,.9);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 14px rgba(192,57,43,.08),0 12px 32px rgba(192,57,43,.10)}
 .score-card.critical .s-label{color:#C0392B}
-
+ 
 /* SECTIONS */
 section.part{margin-bottom:112px}
 section.part .sec-num{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pri);margin-bottom:24px}
@@ -74,93 +97,168 @@ section.part ol{counter-reset:step}
 section.part ol>li{padding-left:36px}
 section.part ol>li::before{counter-increment:step;content:counter(step,decimal-leading-zero);position:absolute;left:0;top:0;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--subtle);letter-spacing:.02em}
 section.part li strong{color:var(--ink);font-weight:600}
-
+ 
 .pin{display:inline;padding:1.5px 7px;background:var(--pri-faint);color:var(--pri);font-weight:600;font-size:.92em;border-radius:4px;white-space:nowrap}
 .pin-gold{display:inline;padding:1.5px 7px;background:var(--gold-faint);color:var(--gold);font-weight:600;font-size:.92em;border-radius:4px;white-space:nowrap}
-
-.proof-link{display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--pri);background:var(--pri-faint);border:1px solid rgba(10,58,102,.15);border-radius:6px;padding:5px 10px;text-decoration:none;transition:background .15s,border-color .15s}
-.proof-link:hover{background:#E0EAF5;border-color:var(--pri);border-bottom-color:var(--pri)}
-.issue-cell.crit .proof-link{color:#C0392B;background:#FFF0EE;border-color:rgba(192,57,43,.2)}
-.issue-cell.crit .proof-link:hover{background:#FDDBD8;border-color:#C0392B;border-bottom-color:#C0392B}
-
-.pull{margin:48px 0;padding:30px 34px;background:var(--off);border-left:3px solid var(--pri);border-radius:0 12px 12px 0;font-size:20px;line-height:1.5;color:var(--ink);font-weight:500;letter-spacing:-.014em;max-width:820px}
+ 
+.proof-link{display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--pri);
+  background:rgba(255,255,255,.65);
+  -webkit-backdrop-filter:blur(14px) saturate(170%);
+  backdrop-filter:blur(14px) saturate(170%);
+  border:1px solid rgba(10,58,102,.2);
+  border-top:1px solid rgba(255,255,255,.85);
+  border-radius:100px;padding:7px 13px;text-decoration:none;
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 2px 8px rgba(10,11,16,.05);
+  transition:all .2s ease}
+.proof-link:hover{background:rgba(255,255,255,.95);border-color:var(--pri);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(10,58,102,.15);border-bottom-color:var(--pri)}
+.issue-cell.crit .proof-link{color:#C0392B;background:rgba(255,255,255,.7);border-color:rgba(192,57,43,.25);border-top-color:rgba(255,255,255,.9)}
+.issue-cell.crit .proof-link:hover{background:rgba(255,255,255,.98);border-color:#C0392B;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(192,57,43,.18);border-bottom-color:#C0392B}
+ 
+.pull{margin:48px 0;padding:30px 36px;border-left:3px solid var(--pri);border-radius:0 18px 18px 0;font-size:20px;line-height:1.5;color:var(--ink);font-weight:500;letter-spacing:-.014em;max-width:820px;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  border-top:1px solid rgba(255,255,255,.9);
+  border-right:1px solid rgba(255,255,255,.75);
+  border-bottom:1px solid rgba(255,255,255,.75);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 4px 16px rgba(10,58,102,.06)}
 .pull p{font-size:inherit;color:inherit;margin:0}
-
+ 
 /* ISSUE GRID */
 .issue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.issue-cell{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:28px 30px}
-.issue-cell.crit{border-color:#E8C5C0;background:#FFF8F7}
+.issue-cell{position:relative;border-radius:18px;padding:28px 30px;
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(20px) saturate(175%);
+  backdrop-filter:blur(20px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 4px 14px rgba(10,11,16,.04),
+    0 12px 32px rgba(10,11,16,.05);
+  transition:transform .2s ease, box-shadow .2s ease}
+.issue-cell:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 6px 18px rgba(10,11,16,.06),0 16px 44px rgba(10,11,16,.08)}
+.issue-cell.crit{background:rgba(255,248,247,.7);border:1px solid rgba(192,57,43,.3);border-top:1px solid rgba(255,255,255,.9);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 14px rgba(192,57,43,.08),0 12px 32px rgba(192,57,43,.10)}
 .issue-cell .i-sev{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:14px}
 .issue-cell.crit .i-sev{color:#C0392B}
 .issue-cell .i-head{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.012em;line-height:1.35}
 .issue-cell .i-body{font-size:14px;color:var(--muted);line-height:1.65}
-
+ 
 /* JOURNEY */
-.journey-list{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:32px 0}
-.journey-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 32px;border-top:1px solid var(--line);align-items:baseline;background:var(--bg)}
+.journey-list{border-radius:18px;overflow:hidden;margin:32px 0;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(22px) saturate(175%);
+  backdrop-filter:blur(22px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 6px 20px rgba(10,11,16,.05),0 16px 48px rgba(10,11,16,.07)}
+.journey-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 32px;border-top:1px solid rgba(236,238,242,.5);align-items:baseline;background:transparent}
 .journey-row:first-child{border-top:none}
 .journey-row .j-time{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.02em;padding-top:2px}
 .journey-row .j-action{font-size:15px;color:var(--ink-soft);line-height:1.6}
 .journey-row .j-action strong{color:var(--ink);font-weight:600}
-.journey-row.broken{background:#FFF8F7}
+.journey-row.broken{background:rgba(255,248,247,.5)}
 .journey-row.broken .j-time{color:#C0392B}
-
+ 
 /* TABLES */
-.t-wrap{margin:32px 0 16px;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.t-wrap{margin:32px 0 16px;overflow-x:auto;border-radius:18px;
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(22px) saturate(175%);
+  backdrop-filter:blur(22px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 6px 20px rgba(10,11,16,.05),0 16px 48px rgba(10,11,16,.07)}
 table{width:100%;border-collapse:collapse;font-size:14.5px}
-thead th{text-align:left;padding:16px 20px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);background:var(--off);border-bottom:1px solid var(--line-s)}
+thead th{text-align:left;padding:16px 20px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);background:rgba(247,248,251,.5);border-bottom:1px solid rgba(222,225,232,.5)}
 tbody td{padding:16px 20px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.55}
 tbody tr:last-child td{border-bottom:none}
 td.sev-crit{color:#C0392B;font-weight:700}
 td.sev-high{color:#E67E22;font-weight:600}
 td.sev-med{color:#F39C12;font-weight:500}
-
+ 
 /* BLUEPRINT CARDS */
 .bp-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:32px 0}
-.bp-card{border:1px solid var(--line);border-left:4px solid var(--pri);border-radius:8px;padding:22px 28px;background:#fff}
+.bp-card{position:relative;border-radius:16px;padding:24px 30px;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(20px) saturate(170%);
+  backdrop-filter:blur(20px) saturate(170%);
+  border:1px solid rgba(255,255,255,.8);
+  border-top:1px solid rgba(255,255,255,.95);
+  border-left:4px solid var(--pri);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 4px 12px rgba(10,11,16,.04),0 10px 28px rgba(10,11,16,.05);
+  transition:transform .2s ease}
+.bp-card:hover{transform:translateX(2px)}
 .bp-card.gold-card{border-left-color:var(--gold)}
 .bp-card h4{margin:0 0 10px;color:var(--pri);font-size:17px;font-weight:600;letter-spacing:-.01em}
 .bp-card.gold-card h4{color:var(--gold)}
 .bp-card .row{font-size:14.5px;margin:6px 0;color:var(--ink-soft);line-height:1.55}
 .bp-card .row b{color:var(--pri);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-right:8px}
 .bp-card.gold-card .row b{color:var(--gold)}
-
+ 
 /* PHASE TIMELINE */
 .phase-list{margin:32px 0}
-.phase-item{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px}
-.phase-head{display:grid;grid-template-columns:60px 220px 1fr;gap:24px;padding:28px 32px;background:var(--off);align-items:center}
+.phase-item{border-radius:18px;overflow:hidden;margin-bottom:14px;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(22px) saturate(175%);
+  backdrop-filter:blur(22px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 6px 20px rgba(10,11,16,.05),0 16px 48px rgba(10,11,16,.07)}
+.phase-head{display:grid;grid-template-columns:60px 220px 1fr;gap:24px;padding:28px 32px;background:rgba(247,248,251,.35);align-items:center}
 .phase-head .ph-num{width:44px;height:44px;border-radius:50%;background:var(--blk);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;font-family:var(--mono)}
 .phase-head .ph-when{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pri)}
 .phase-head .ph-title{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.012em}
-.phase-body{padding:28px 32px;border-top:1px solid var(--line)}
+.phase-body{padding:28px 32px;border-top:1px solid rgba(236,238,242,.5)}
 .phase-body ul{margin:0;padding:0;list-style:none}
 .phase-body li{font-size:15px;color:var(--ink-soft);line-height:1.65;padding-left:26px;margin-bottom:12px;position:relative}
 .phase-body li::before{content:'';position:absolute;left:0;top:12px;width:12px;height:1px;background:var(--faint)}
 .phase-body li strong{color:var(--ink);font-weight:600}
-
+ 
 /* WINS GRID */
 .wins-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px}
-.wins-cell{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:32px}
+.wins-cell{position:relative;border-radius:20px;padding:32px;
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
+  border:1px solid rgba(255,255,255,.8);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 6px 18px rgba(10,11,16,.05),0 16px 44px rgba(10,11,16,.07);
+  transition:transform .2s ease, box-shadow .2s ease}
+.wins-cell:hover{transform:translateY(-2px)}
 .wins-cell .w-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--pri);margin-bottom:12px}
 .wins-cell .w-head{font-size:17.5px;font-weight:600;letter-spacing:-.014em;color:var(--ink);margin-bottom:10px;line-height:1.35}
 .wins-cell .w-body{font-size:14.5px;color:var(--muted);line-height:1.65}
-
+ 
 /* PALETTE */
 .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0}
-.chip{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.chip{border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.65);
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  border:1px solid rgba(255,255,255,.8);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 4px 12px rgba(10,11,16,.04)}
 .chip .color{height:72px}
 .chip .label{padding:10px 12px;font-size:12.5px}
 .chip .label b{display:block;color:var(--pri);font-size:13px;margin-bottom:2px}
 .chip .hex{color:var(--muted);font-size:11.5px;letter-spacing:.04em}
-
+ 
 /* BRUTAL */
 .brutal{margin-top:40px;padding:30px 34px;background:var(--blk);color:#fff;border-radius:14px;font-size:19px;font-weight:500;line-height:1.5;letter-spacing:-.014em}
 .brutal strong{color:#FCD68A;font-weight:600}
-
+ 
 /* FOOTER */
-footer.doc-foot{margin-top:112px;padding:36px 40px;border:1px solid var(--line);border-radius:14px;background:var(--off);font-size:13.5px;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer.doc-foot{margin-top:112px;padding:36px 40px;border-radius:18px;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(22px) saturate(175%);
+  backdrop-filter:blur(22px) saturate(175%);
+  border:1px solid rgba(255,255,255,.75);
+  border-top:1px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 6px 20px rgba(10,11,16,.05),0 16px 48px rgba(10,11,16,.07);
+  font-size:13.5px;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 footer.doc-foot strong{color:var(--ink)}
-
+ 
 /* RESPONSIVE */
 @media(max-width:980px){
   .shell{padding:64px 24px 96px}
@@ -173,12 +271,107 @@ footer.doc-foot strong{color:var(--ink)}
   section.part{margin-bottom:72px}
   .phase-head{grid-template-columns:1fr;gap:10px}
   .journey-row{grid-template-columns:1fr;gap:6px}
+/* RESEARCH CARDS — Apple glassmorphism */
+.research-grid{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:32px 0 16px;padding:32px;border-radius:24px;background:
+  radial-gradient(at 20% 10%,rgba(200,130,58,.12) 0%,transparent 55%),
+  radial-gradient(at 80% 90%,rgba(10,58,102,.10) 0%,transparent 55%),
+  linear-gradient(135deg,#F7F4EE 0%,#EEF2F8 100%);
+  overflow:hidden}
+.research-grid::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 15% 20%,rgba(255,255,255,.6) 0%,transparent 40%),
+  radial-gradient(circle at 85% 80%,rgba(200,130,58,.08) 0%,transparent 50%);
+  pointer-events:none;z-index:0}
+.research-card{position:relative;z-index:1;background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(255,255,255,.8);
+  border-top:1px solid rgba(255,255,255,.95);
+  border-radius:18px;padding:28px 30px;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,
+             0 -1px 0 rgba(0,0,0,.02) inset,
+             0 4px 16px rgba(10,11,16,.06),
+             0 12px 40px rgba(10,11,16,.08);
+  transition:transform .2s ease,box-shadow .2s ease}
+.research-card:hover{transform:translateY(-2px);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,
+             0 -1px 0 rgba(0,0,0,.02) inset,
+             0 6px 20px rgba(10,11,16,.08),
+             0 16px 48px rgba(10,11,16,.12)}
+.research-card .r-label{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-bottom:12px;display:inline-block;padding:4px 10px;background:rgba(200,130,58,.12);border:1px solid rgba(200,130,58,.25);border-radius:100px}
+.research-card .r-title{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.4;margin-bottom:8px}
+.research-card .r-body{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.research-card .r-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--pri);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(10,58,102,.18);
+  border-top:1px solid rgba(255,255,255,.9);
+  border-radius:100px;padding:7px 14px;
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 2px 8px rgba(10,11,16,.05);
+  transition:all .2s ease}
+.research-card .r-link:hover{background:rgba(255,255,255,.95);border-color:rgba(10,58,102,.4);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 14px rgba(10,58,102,.15);border-bottom-color:rgba(10,58,102,.4)}
+ 
+/* HEADER META LINKS — glass pill treatment */
+header.top .m-value a{display:inline-block;padding:6px 14px;margin-top:-2px;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid rgba(10,58,102,.15);
+  border-top:1px solid rgba(255,255,255,.9);
+  border-radius:100px;font-size:13.5px;font-weight:500;
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 2px 6px rgba(10,11,16,.04);
+  transition:all .2s ease;border-bottom:1px solid rgba(10,58,102,.15) !important}
+header.top .m-value a:hover{background:rgba(255,255,255,.85);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 10px rgba(10,58,102,.1)}
+ 
+@media(max-width:980px){.research-grid{grid-template-columns:1fr;padding:20px}}
+ 
+/* HEADER REFERENCES — gold-highlighted prominent pills */
+.meta-refs{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:22px 24px;margin-top:32px;
+  background:linear-gradient(135deg,rgba(253,246,238,.9) 0%,rgba(255,250,243,.75) 100%);
+  border:1px solid rgba(200,130,58,.22);
+  border-top:1px solid rgba(255,255,255,.9);
+  border-radius:16px;
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  backdrop-filter:blur(20px) saturate(180%);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 4px 14px rgba(200,130,58,.08),0 12px 36px rgba(200,130,58,.06)}
+.meta-refs .mr-label{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-right:4px;display:inline-flex;align-items:center;gap:10px}
+.meta-refs .mr-label::before{content:'';display:inline-block;width:24px;height:2px;background:var(--gold)}
+.meta-refs .mr-link{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--gold);
+  background:rgba(255,255,255,.75);
+  -webkit-backdrop-filter:blur(14px) saturate(170%);
+  backdrop-filter:blur(14px) saturate(170%);
+  border:1px solid rgba(200,130,58,.32);
+  border-top:1px solid rgba(255,255,255,.95);
+  border-radius:100px;padding:9px 18px;
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 2px 10px rgba(200,130,58,.12),0 6px 18px rgba(200,130,58,.08);
+  transition:all .2s ease;border-bottom:1px solid rgba(200,130,58,.32) !important}
+.meta-refs .mr-link:hover{background:rgba(255,255,255,.95);transform:translateY(-1px);border-color:var(--gold) !important;color:#A66C2C;box-shadow:0 1px 0 rgba(255,255,255,.95) inset,0 4px 14px rgba(200,130,58,.22),0 10px 28px rgba(200,130,58,.15)}
+.meta-refs .mr-link::before{content:'\2192';font-size:13px;opacity:.7;font-weight:700}
+@media(max-width:980px){.meta-refs{gap:8px;padding:16px 18px}.meta-refs .mr-link{font-size:12.5px;padding:7px 14px}}
+ 
+/* PRINT FALLBACK — glass becomes solid */
+@media print {
+  body{background:#fff !important}
+  .verdict,.score-card,.issue-cell,.wins-cell,.bp-card,.t-wrap,.journey-list,.phase-item,.pull,.chip,footer.doc-foot,.research-card{
+    background:#fff !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+    border:1px solid #DEE1E8 !important;
+    box-shadow:none !important;
+  }
+  .score-card.critical,.issue-cell.crit{background:#FFF8F7 !important;border-color:#E8C5C0 !important}
+  .proof-link,.r-link,.meta-refs .mr-link,header.top .m-value a{
+    background:#fff !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+  }
 }
+ 
 </style>
 </head>
 <body>
 <div class="shell">
-
+ 
   <!-- HEADER -->
   <header class="top">
     <div class="eyebrow-bar">Strategy &amp; Redesign Report &middot; Final v2.0</div>
@@ -187,9 +380,16 @@ footer.doc-foot strong{color:var(--ink)}
     <div class="meta">
       <div><div class="m-label">Prepared For</div><div class="m-value">Mitta Foundation Leadership</div></div>
       <div><div class="m-label">Date</div><div class="m-value">April 2026</div></div>
+      <div><div class="m-label">India Site (broken)</div><div class="m-value"><a href="https://mittafoundation.org/" target="_blank" style="color:#C0392B">mittafoundation.org</a></div></div>
+      <div><div class="m-label">US Site Proposal</div><div class="m-value"><a href="https://mitta-foundation-usa-git-main-satyam25613-8287s-projects.vercel.app" target="_blank">mitta-foundation-usa.vercel.app</a></div></div>
+    </div>
+    <div class="meta-refs">
+      <span class="mr-label">Report References</span>
+      <a class="mr-link" href="https://docs.google.com/document/d/1WIkrApTtiuIcKwyx92NKYBlworhkah47/edit?usp=sharing&ouid=109510663026534070370&rtpof=true&sd=true" target="_blank">Reference 01 &middot; Color &amp; Trust Signalling Research</a>
+      <a class="mr-link" href="https://docs.google.com/document/d/1AWeHe8OAwr8JFg0wP3VHc5elfird69bEKx9vWVrQ0-E/edit?usp=sharing" target="_blank">Reference 02 &middot; Storytelling Framework Research</a>
     </div>
   </header>
-
+ 
   <!-- VERDICT BOX -->
   <div class="verdict">
     <div class="v-eye"><span class="tag">VERDICT</span> Executive Summary — 30 Seconds</div>
@@ -199,13 +399,32 @@ footer.doc-foot strong{color:var(--ink)}
       The gap between Mitta's <strong>real-world impact</strong> and its <strong>digital representation</strong> is the single biggest constraint on its growth right now. A focused redesign — rooted in donor psychology, transparency, and storytelling — can unlock online donations as a recurring revenue stream, establish national and international credibility, and position Mitta alongside globally respected NGOs in structure, tone, and professionalism.
     </div>
   </div>
-
-  <!-- SCORECARD -->
+ 
+  <!-- VISION SECTION — added per Sai's restructure -->
   <section class="part">
-    <span class="sec-num">Scorecard</span>
-    <h2>Where the site stands today.</h2>
+    <span class="sec-num">01 &mdash; The Vision</span>
+    <h2>A robust US website for Mitta Foundation.</h2>
+    <p>The goal is to establish a credible, US-based digital home for the Mitta Foundation — a website that represents the ongoing India work to an audience of US donors, diaspora supporters, and corporate philanthropy partners.</p>
+ 
+    <h3>Three things this website must do</h3>
+    <ol>
+      <li><strong>Target US donors specifically.</strong> The language, tone, tax framing, and giving flow must be built for a US audience — not adapted from the India site. US donors have different trust expectations, different tax requirements, and different baseline standards for what a credible NGO website looks like.</li>
+      <li><strong>Connect transparently to the India work.</strong> The US site is not a separate organisation. It is the front door for US supporters to the ongoing programs, beneficiaries, and field operations in India. Every claim on the US site must be traceable to real work on the ground.</li>
+      <li><strong>Address US tax and donation requirements.</strong> US donors benchmark against 501(c)(3) NGOs. The site must handle tax-deductibility framing, multiple giving mechanisms (single donation, monthly sponsorship, corporate giving), and the compliance signals that make an international nonprofit look legitimate to an American giver.</li>
+    </ol>
+ 
+    <div class="pull"><p>The US website is not a translation of the India website. It is a purpose-built donor conversion engine for a different audience, built to a different standard.</p></div>
+  </section>
+ 
+  <!-- SECTION 02 — CURRENT STATE (merged Scorecard + Critical Problems) -->
+  <section class="part">
+    <span class="sec-num">02 &mdash; Current State &middot; India Site</span>
+    <h2>Where the India site stands today.</h2>
+    <p>Two views of the same reality. The scorecard below grades each dimension of the current experience. The detailed cards that follow show exactly which failures are doing the damage &mdash; each one linked to the live page where you can verify it yourself.</p>
+ 
+    <h3>Scorecard &mdash; at a glance</h3>
     <div class="score-grid">
-      <div class="score-card critical">
+<div class="score-card critical">
         <div class="s-label">Donation Experience</div>
         <div class="s-value">0 / 10 — Non-existent</div>
         <div class="s-sub">No payment gateway, no amount selector, no bank details. Clicking "Donate Now" leads to a blank page. 100% of donor intent is lost at the point of conversion.</div>
@@ -236,129 +455,10 @@ footer.doc-foot strong{color:var(--ink)}
         <div class="s-sub">Functional but clearly a WordPress theme. No custom typography system, no visual hierarchy, no emotional design language appropriate for an NGO.</div>
       </div>
     </div>
-  </section>
-
-  <!-- SECTION 01 -->
-  <section class="part">
-    <span class="sec-num">01 — Current State Analysis</span>
-    <h2>Four structural failure areas. Each independently damaging.</h2>
-
-    <h3>1.1 Trust Failures</h3>
-    <ul>
-      <li>No team page, no board of directors, no named leadership — anonymous organisations do not receive large donations</li>
-      <li>No annual report, no fund usage breakdown, no 80G/12A certificate information displayed</li>
-      <li>No beneficiary stories with verifiable details — gallery photos exist but carry zero captions, dates, or context</li>
-      <li>Copyright footer reads 2024 — signals the site has not been maintained in over a year</li>
-      <li>Founder name misspelled in the About page ("Swatatntrakala") — undermines the credibility of the site's most important trust asset</li>
-    </ul>
-
-    <h3>1.2 UX &amp; Navigation Failures</h3>
-    <ul>
-      <li><strong>Social Services</strong> nav link — 404 Not Found. This is the core programs page.</li>
-      <li><strong>Mitta Skill Academy</strong> nav link — 404 Not Found. A named programme with no page.</li>
-      <li><strong>"Sponsor A Child"</strong> CTA button routes to the Contact Us page, not a giving flow</li>
-      <li>No mission statement above the fold — hero section has images but does not answer: Who are you? What do you do? Who do you serve?</li>
-      <li>No impact statistics anywhere on the homepage — a foundation with 18+ years of work shows nothing quantified</li>
-    </ul>
-
-    <h3>1.3 Donation System Failures</h3>
-    <ul>
-      <li><strong>No working donation gateway</strong> — the single most critical failure on the entire site</li>
-      <li>Right column of the <span class="pin">/donate-now/</span> page is a blank white box — no form, no widget, no bank details</li>
-      <li>No suggested donation amounts, no impact-per-amount framing ("₹1,500 = one child's education for a month")</li>
-      <li>No recurring donation option — the highest-value donor segment is entirely ignored</li>
-      <li>No post-donation confirmation, receipt, or follow-up flow exists</li>
-    </ul>
-
-    <h3>1.4 Content Failures</h3>
-    <ul>
-      <li>Grammar error: <span class="pin">"childs education"</span> appears verbatim on every page via a shared CTA component</li>
-      <li>"Together for a Brighter Tomorrow" — a subheading with no specificity. Does not communicate mission, geography, or beneficiary group</li>
-      <li>No beneficiary stories on any page — the most powerful conversion content an NGO can publish is absent throughout</li>
-      <li>Project list is too generic: "Construction of new classrooms" — no school name, no location, no date, no investment figure</li>
-    </ul>
-  </section>
-
-  <!-- SECTION 02 — DONOR JOURNEY -->
-  <section class="part">
-    <span class="sec-num">02 — Donor Journey Analysis</span>
-    <h2>Every critical path ends in failure.</h2>
-
-    <h3>Journey A — Visitor trying to understand the NGO</h3>
-    <div class="journey-list">
-      <div class="journey-row"><div class="j-time">Step 1</div><div class="j-action"><strong>Lands on homepage.</strong> Real photos, credible logo, FCRA number visible. First impression is warm but vague — no mission statement above fold.</div></div>
-      <div class="journey-row"><div class="j-time">Step 2</div><div class="j-action"><strong>Clicks "About Us."</strong> Finds a genuinely moving founding story. The site's strongest trust asset — buried on page 2.</div></div>
-      <div class="journey-row broken"><div class="j-time">Step 3</div><div class="j-action"><strong>Clicks "Social Services"</strong> to understand programs. Returns <span class="pin">404 Not Found</span>. Journey ends here for most visitors.</div></div>
-    </div>
-
-    <h3>Journey B — Visitor trying to donate</h3>
-    <div class="journey-list">
-      <div class="journey-row"><div class="j-time">Click 1</div><div class="j-action"><strong>Clicks "DONATE NOW"</strong> — high-visibility red button, correctly placed top-right on every page.</div></div>
-      <div class="journey-row"><div class="j-time">Click 2</div><div class="j-action"><strong>Lands on /donate-now/.</strong> Reads 4 bullet points about what donations fund. Intent is high.</div></div>
-      <div class="journey-row broken"><div class="j-time">Click 3</div><div class="j-action"><strong>Looks for payment option.</strong> Right side of page is a blank white box. No form. No payment widget. No bank details. Nothing.</div></div>
-      <div class="journey-row broken"><div class="j-time">Click 4</div><div class="j-action"><strong>Clicks "Sponsor A Child"</strong> — routed to Contact Us page instead of a giving flow.</div></div>
-      <div class="journey-row broken"><div class="j-time">Click 5</div><div class="j-action"><strong>Contact form is blank</strong> — just a heading, no fields, no submit button. Donor leaves. <strong>Donation is lost permanently.</strong></div></div>
-    </div>
-
-    <h3>Journey C — Volunteer or partner</h3>
-    <div class="journey-list">
-      <div class="journey-row"><div class="j-time">Step 1</div><div class="j-action"><strong>Clicks "Engage With Us."</strong> Page loads — one paragraph of text, a generic email address.</div></div>
-      <div class="journey-row broken"><div class="j-time">Step 2</div><div class="j-action"><strong>No form, no requirements, no timeline, no next step.</strong> Volunteer sends email to info@ and hears nothing back. Engagement dies.</div></div>
-    </div>
-
-    <div class="pull"><p>The organisation is losing real donor money every single day the site remains in this state. This is not a design problem — it is a revenue emergency.</p></div>
-  </section>
-
-  <!-- SECTION 03 — TRUST AUDIT -->
-  <section class="part">
-    <span class="sec-num">03 — Trust &amp; Credibility Audit</span>
-    <h2>What the site signals vs. what it should signal.</h2>
-
-    <h3>Trust signals present</h3>
-    <ul>
-      <li><strong>FCRA Registration 368140126</strong> — displayed in header and footer on every page. Legally significant and a major credibility anchor for Indian donors</li>
-      <li><strong>Real founding story</strong> — Dr. Mitta Srinivas Rao &amp; Dr. Mitta Swatantrakala, founded 2006. Authentic, emotionally resonant, and unique</li>
-      <li><strong>Real gallery photographs</strong> — hospital equipment donations, classroom renovations, children receiving books. Verifiable field documentation</li>
-      <li><strong>Google Maps embed</strong> — real office address in Hyderabad, verifiable</li>
-      <li><strong>Physical address, phone, and email</strong> consistent across all pages</li>
-    </ul>
-
-    <h3>Trust-breaking moments</h3>
-    <div class="t-wrap">
-      <table>
-        <thead><tr><th>Moment</th><th>Why it breaks trust</th><th>Severity</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Donate button leads to blank page</strong></td><td>The moment a donor is ready to act, the site fails them. This is the highest-cost failure per user on the site.</td><td class="sev-crit">CRITICAL</td></tr>
-          <tr><td><strong>Blank enquiry form</strong></td><td>Organisation appears unreachable. Partners and press have no path in.</td><td class="sev-crit">CRITICAL</td></tr>
-          <tr><td><strong>"Social Services" 404</strong></td><td>A primary nav item doesn't exist. Signals the site is abandoned.</td><td class="sev-crit">CRITICAL</td></tr>
-          <tr><td><strong>No financial transparency</strong></td><td>No annual report, no fund breakdown, no 80G/12A. US/global donors will not give to a financial black box.</td><td class="sev-crit">CRITICAL</td></tr>
-          <tr><td><strong>"childs education" — sitewide</strong></td><td>Elementary grammar error on every page signals low attention to detail.</td><td class="sev-high">HIGH</td></tr>
-          <tr><td><strong>Founder name misspelled</strong></td><td>"Swatatntrakala" — deeply unprofessional on the site's most important trust page.</td><td class="sev-high">HIGH</td></tr>
-          <tr><td><strong>No team or board page</strong></td><td>Anonymous leadership is a red flag for sophisticated donors and institutional funders.</td><td class="sev-high">HIGH</td></tr>
-          <tr><td><strong>Gallery photos have no captions</strong></td><td>Photos without location, date, and context feel like stock imagery even when they're real.</td><td class="sev-med">MEDIUM</td></tr>
-          <tr><td><strong>Copyright reads 2024</strong></td><td>Site appears abandoned. May be one year out of date.</td><td class="sev-med">MEDIUM</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Missing trust elements</h3>
-    <ul>
-      <li>80G / 12A tax exemption certificate (critical for Indian donors claiming deductions)</li>
-      <li>US 501(c)(3) or equivalent for American diaspora donors</li>
-      <li>Named board members or advisors with photos and bios</li>
-      <li>Annual impact report (even a 2-page PDF)</li>
-      <li>Bank account details or UPI QR code as a fallback donation method</li>
-      <li>Testimonials from beneficiaries with verifiable names and locations</li>
-    </ul>
-  </section>
-
-  <!-- SECTION 04 — CRITICAL PROBLEMS -->
-  <section class="part">
-    <span class="sec-num">04 — Critical Problems, Ranked</span>
-    <h2>Five issues actively destroying trust and revenue.</h2>
-
+ 
+    <h3>The critical failures &mdash; with proof</h3>
     <div class="issue-grid">
-      <div class="issue-cell crit">
+<div class="issue-cell crit">
         <div class="i-sev">&#9632; Critical &middot; #1</div>
         <div class="i-head">Donation page has no donation mechanism</div>
         <div class="i-body">The right column of the donate page is a blank white box. No payment widget, no bank details, no UPI QR code. Every donor click ends in silence. &#8377;0 raised from the website.</div>
@@ -408,40 +508,54 @@ footer.doc-foot strong{color:var(--ink)}
       </div>
     </div>
   </section>
-
-  <!-- SECTION 05 — DONATION EXPERIENCE -->
+ 
+  <!-- SECTION 01 -->
   <section class="part">
-    <span class="sec-num">05 — Donation Experience</span>
-    <h2>What a world-class giving flow looks like vs. today.</h2>
-
-    <h3>What is missing</h3>
-    <div class="t-wrap">
-      <table>
-        <thead><tr><th>Missing Element</th><th>Why it matters</th><th>Priority</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Payment gateway</strong> (Razorpay / PayPal / Stripe)</td><td>Without this, donating is literally impossible. This is the #1 revenue fix.</td><td class="sev-crit">P0</td></tr>
-          <tr><td><strong>Suggested amounts</strong> (&#8377;500 / &#8377;2,000 / &#8377;10,000 / Custom)</td><td>Reduces decision fatigue. Anchors giving at a higher amount. Standard on every major NGO site.</td><td class="sev-crit">P0</td></tr>
-          <tr><td><strong>Impact-per-amount framing</strong></td><td>"&#8377;1,500 funds one child's education for a month" converts visitors. Generic "your donation helps" does not.</td><td class="sev-crit">P0</td></tr>
-          <tr><td><strong>80G / tax benefit information</strong></td><td>Indian donors legally require this to claim deductions. Its absence is a legal and psychological barrier.</td><td class="sev-crit">P0</td></tr>
-          <tr><td><strong>FCRA number on donate page</strong></td><td>International donors need this to verify legal compliance. It exists in the header but not on the donation flow.</td><td class="sev-high">P1</td></tr>
-          <tr><td><strong>Recurring donation option</strong></td><td>Monthly donors are 3&ndash;5x more valuable than one-time givers. This segment is entirely unaddressed.</td><td class="sev-high">P1</td></tr>
-          <tr><td><strong>Bank / UPI fallback</strong></td><td>Minimum viable donation path. Even if gateway setup takes time, bank details published immediately enable giving.</td><td class="sev-high">P1</td></tr>
-          <tr><td><strong>Confirmation &amp; receipt flow</strong></td><td>Proof of giving, compliance requirement, and the beginning of the donor relationship. Does not exist.</td><td class="sev-med">P2</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="brutal">
-      The organisation is losing real donor money <strong>every single day</strong> the donation page remains blank. This is not a design or content problem. It is a revenue emergency that requires a Razorpay or PayPal integration — not a redesign — to fix within this week.
-    </div>
+    <span class="sec-num">03 &mdash; Failure Breakdown</span>
+    <h2>Four structural failure areas. Each independently damaging.</h2>
+ 
+    <h3>3.1 Trust Failures</h3>
+    <ul>
+      <li>No team page, no board of directors, no named leadership — anonymous organisations do not receive large donations</li>
+      <li>No annual report, no fund usage breakdown, no 80G/12A certificate information displayed</li>
+      <li>No beneficiary stories with verifiable details — gallery photos exist but carry zero captions, dates, or context</li>
+      <li>Copyright footer reads 2024 — signals the site has not been maintained in over a year</li>
+      <li>Founder name misspelled in the About page ("Swatatntrakala") — undermines the credibility of the site's most important trust asset</li>
+    </ul>
+ 
+    <h3>3.2 UX &amp; Navigation Failures</h3>
+    <ul>
+      <li><strong>Social Services</strong> nav link — 404 Not Found. This is the core programs page.</li>
+      <li><strong>Mitta Skill Academy</strong> nav link — 404 Not Found. A named programme with no page.</li>
+      <li><strong>"Sponsor A Child"</strong> CTA button routes to the Contact Us page, not a giving flow</li>
+      <li>No mission statement above the fold — hero section has images but does not answer: Who are you? What do you do? Who do you serve?</li>
+      <li>No impact statistics anywhere on the homepage — a foundation with 18+ years of work shows nothing quantified</li>
+    </ul>
+ 
+    <h3>3.3 Donation System Failures</h3>
+    <ul>
+      <li><strong>No working donation gateway</strong> — the single most critical failure on the entire site</li>
+      <li>Right column of the <span class="pin">/donate-now/</span> page is a blank white box — no form, no widget, no bank details</li>
+      <li>No suggested donation amounts, no impact-per-amount framing ("₹1,500 = one child's education for a month")</li>
+      <li>No recurring donation option — the highest-value donor segment is entirely ignored</li>
+      <li>No post-donation confirmation, receipt, or follow-up flow exists</li>
+    </ul>
+ 
+    <h3>3.4 Content Failures</h3>
+    <ul>
+      <li>Grammar error: <span class="pin">"childs education"</span> appears verbatim on every page via a shared CTA component</li>
+      <li>"Together for a Brighter Tomorrow" — a subheading with no specificity. Does not communicate mission, geography, or beneficiary group</li>
+      <li>No beneficiary stories on any page — the most powerful conversion content an NGO can publish is absent throughout</li>
+      <li>Project list is too generic: "Construction of new classrooms" — no school name, no location, no date, no investment figure</li>
+    </ul>
   </section>
-
+ 
   <!-- SECTION 06 — BENCHMARK -->
   <section class="part">
-    <span class="sec-num">06 — Benchmark Insights</span>
+    <span class="sec-num">04 &mdash; Benchmark Insights</span>
     <h2>What leading NGOs do differently.</h2>
     <p>Patterns observed across Charity: Water, GiveDirectly, Akshaya Patra, Smile Foundation, CRY India, and Doctors Without Borders.</p>
-
+ 
     <h3>What they all have that Mitta currently lacks</h3>
     <div class="wins-grid">
       <div class="wins-cell">
@@ -466,12 +580,165 @@ footer.doc-foot strong{color:var(--ink)}
       </div>
     </div>
   </section>
-
+ 
+  <!-- SECTION 10 — CONTENT STRATEGY -->
+  <section class="part">
+    <span class="sec-num">05 &mdash; Content &amp; Storytelling Strategy</span>
+    <h2>How Mitta should communicate.</h2>
+ 
+    <h3>Research behind these recommendations</h3>
+    <p>The communication, color, and storytelling recommendations throughout this document are grounded in two independent research references. Both documents are linked here so every recommendation is traceable to source evidence.</p>
+ 
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="r-label">RESEARCH 01 &middot; REFERENCE</div>
+        <div class="r-title">Color psychology, donor trust signalling, and visual design</div>
+        <div class="r-body">Underlying research supporting the recommendations on color pattern, trust signalling, and visual design choices used across the new site.</div>
+        <a class="r-link" href="https://docs.google.com/document/d/1WIkrApTtiuIcKwyx92NKYBlworhkah47/edit?usp=sharing&ouid=109510663026534070370&rtpof=true&sd=true" target="_blank">&rarr; Open research document</a>
+      </div>
+      <div class="research-card">
+        <div class="r-label">RESEARCH 02 &middot; REFERENCE</div>
+        <div class="r-title">Storytelling framework, narrative structure, and donor communication</div>
+        <div class="r-body">Framework behind the storytelling approach, narrative structure, and communication recommendations — the psychological mechanics of converting first-time visitors into committed donors.</div>
+        <a class="r-link" href="https://docs.google.com/document/d/1AWeHe8OAwr8JFg0wP3VHc5elfird69bEKx9vWVrQ0-E/edit?usp=sharing" target="_blank">&rarr; Open research document</a>
+      </div>
+    </div>
+ 
+    <h3>Voice and framing</h3>
+    <ul>
+      <li><strong>Voice:</strong> Warm, grounded, confident. Not corporate. Not saviour-toned. The founders grew up in poverty — this voice is already authentic to them</li>
+      <li><strong>Tense:</strong> Present and specific. "Today, in Gudimalkapur, Priya walked into her first classroom" beats "We are committed to education"</li>
+      <li><strong>Structure:</strong> Beneficiary-first, not organisation-first. The story of one child converts more than ten paragraphs of mission copy</li>
+      <li><strong>Evidence:</strong> Every emotional claim must be paired with a number or a name. Vague sincerity without proof is indistinguishable from fiction</li>
+    </ul>
+ 
+    <h3>Founder story — deploy at three layers</h3>
+    <ol>
+      <li><strong>Homepage</strong> — 4-line note with founder photo, linking to the full story</li>
+      <li><strong>About page</strong> — full narrative with photos of the founders, timeline of the foundation's growth</li>
+      <li><strong>Donation confirmation page</strong> — personal thank-you from the founder, perceived as handwritten</li>
+    </ol>
+ 
+    <h3>Impact storytelling system</h3>
+    <p>Build a repeatable content engine that compounds over time:</p>
+    <ul>
+      <li><strong>One story per month</strong>, structured identically: Who &rarr; Before &rarr; Intervention &rarr; After &rarr; What's next</li>
+      <li>Each story becomes: homepage feature &rarr; blog post &rarr; Instagram carousel &rarr; donor email update</li>
+      <li>Archive into a permanent <strong>Story Library</strong> — this compounds over years and becomes a trust moat that no competitor can replicate</li>
+      <li>The School Enlightenment page already has the structure right — specific schools, specific rupee amounts, specific years. This model should be applied everywhere</li>
+    </ul>
+ 
+    <div class="pull"><p>Mitta has the substance — real work, real impact, a real founding story. The redesign is primarily a <em>signalling upgrade</em>, not a content invention. The work exists. The website needs to finally be worthy of it.</p></div>
+  </section>
+ 
+  <!-- SECTION 06 — DONOR JOURNEY (moved from appendix per swap) -->
+  <section class="part">
+    <span class="sec-num">06 &mdash; Donor Journey Analysis</span>
+    <h2>Every critical path ends in failure.</h2>
+ 
+    <h3>Journey A — Visitor trying to understand the NGO</h3>
+    <div class="journey-list">
+      <div class="journey-row"><div class="j-time">Step 1</div><div class="j-action"><strong>Lands on homepage.</strong> Real photos, credible logo, FCRA number visible. First impression is warm but vague — no mission statement above fold.</div></div>
+      <div class="journey-row"><div class="j-time">Step 2</div><div class="j-action"><strong>Clicks "About Us."</strong> Finds a genuinely moving founding story. The site's strongest trust asset — buried on page 2.</div></div>
+      <div class="journey-row broken"><div class="j-time">Step 3</div><div class="j-action"><strong>Clicks "Social Services"</strong> to understand programs. Returns <span class="pin">404 Not Found</span>. Journey ends here for most visitors.</div></div>
+    </div>
+ 
+    <h3>Journey B — Visitor trying to donate</h3>
+    <div class="journey-list">
+      <div class="journey-row"><div class="j-time">Click 1</div><div class="j-action"><strong>Clicks "DONATE NOW"</strong> — high-visibility red button, correctly placed top-right on every page.</div></div>
+      <div class="journey-row"><div class="j-time">Click 2</div><div class="j-action"><strong>Lands on /donate-now/.</strong> Reads 4 bullet points about what donations fund. Intent is high.</div></div>
+      <div class="journey-row broken"><div class="j-time">Click 3</div><div class="j-action"><strong>Looks for payment option.</strong> Right side of page is a blank white box. No form. No payment widget. No bank details. Nothing.</div></div>
+      <div class="journey-row broken"><div class="j-time">Click 4</div><div class="j-action"><strong>Clicks "Sponsor A Child"</strong> — routed to Contact Us page instead of a giving flow.</div></div>
+      <div class="journey-row broken"><div class="j-time">Click 5</div><div class="j-action"><strong>Contact form is blank</strong> — just a heading, no fields, no submit button. Donor leaves. <strong>Donation is lost permanently.</strong></div></div>
+    </div>
+ 
+    <h3>Journey C — Volunteer or partner</h3>
+    <div class="journey-list">
+      <div class="journey-row"><div class="j-time">Step 1</div><div class="j-action"><strong>Clicks "Engage With Us."</strong> Page loads — one paragraph of text, a generic email address.</div></div>
+      <div class="journey-row broken"><div class="j-time">Step 2</div><div class="j-action"><strong>No form, no requirements, no timeline, no next step.</strong> Volunteer sends email to info@ and hears nothing back. Engagement dies.</div></div>
+    </div>
+ 
+    <div class="pull"><p>The organisation is losing real donor money every single day the site remains in this state. This is not a design problem — it is a revenue emergency.</p></div>
+  </section>
+ 
+  <!-- SECTION 09 — DESIGN SYSTEM -->
+  <section class="part">
+    <span class="sec-num">07 &mdash; Design System</span>
+    <h2>The signalling layer, engineered for donor trust.</h2>
+    <p>The design system must do one job: make a first-time visitor feel that Mitta is real, trustworthy, and worth giving to within 30 seconds of landing.</p>
+ 
+    <h3>7.1 Colour Palette</h3>
+    <div class="palette">
+      <div class="chip"><div class="color" style="background:#0A3A66"></div><div class="label"><b>Deep Trust Blue</b><span class="hex">#0A3A66 &middot; Primary</span></div></div>
+      <div class="chip"><div class="color" style="background:#F7F4EE"></div><div class="label"><b>Soft Ivory</b><span class="hex">#F7F4EE &middot; Background</span></div></div>
+      <div class="chip"><div class="color" style="background:#C8823A"></div><div class="label"><b>Warm Amber</b><span class="hex">#C8823A &middot; Accent/CTA</span></div></div>
+      <div class="chip"><div class="color" style="background:#1C1C1C"></div><div class="label"><b>Charcoal</b><span class="hex">#1C1C1C &middot; Body text</span></div></div>
+      <div class="chip"><div class="color" style="background:#2F7A5C"></div><div class="label"><b>Muted Green</b><span class="hex">#2F7A5C &middot; Success</span></div></div>
+    </div>
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>Role</th><th>Colour</th><th>Psychological function</th></tr></thead>
+        <tbody>
+          <tr><td>Primary</td><td>Deep Trust Blue #0A3A66</td><td>Universal colour of institutional trust (UN, hospitals, universities). Signals maturity and permanence, not corporate coldness.</td></tr>
+          <tr><td>Background</td><td>Soft Ivory #F7F4EE</td><td>Warm off-white. Feels humanitarian and editorial, not sterile. Reduces cognitive strain during reading.</td></tr>
+          <tr><td>Accent / CTA</td><td>Warm Amber #C8823A</td><td>Triggers warmth, generosity, human light. Used on donate buttons and CTAs — drives action. Amber evokes harvest and community.</td></tr>
+          <tr><td>Body Text</td><td>Charcoal #1C1C1C</td><td>Higher readability than pure black. Softer, more approachable at scale.</td></tr>
+          <tr><td>Success</td><td>Muted Green #2F7A5C</td><td>For impact counters, confirmation states, and "money well spent" signals.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h3>7.2 Typography</h3>
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>Role</th><th>Typeface</th><th>Why it works</th></tr></thead>
+        <tbody>
+          <tr><td>Display / Headlines</td><td><strong>Fraunces</strong> (optical serif)</td><td>Serif headlines signal editorial credibility, heritage, and humanity — the opposite of a corporate template. Fraunces has warmth without nostalgia.</td></tr>
+          <tr><td>Body / UI</td><td><strong>Inter</strong> (sans-serif)</td><td>Neutral, highly legible, modern. Trusted by premium publications and global NGOs. Open-source and widely supported.</td></tr>
+          <tr><td>Numbers / Impact</td><td><strong>Inter Bold Tabular</strong></td><td>Clean tabular figures for impact counters, amounts, and financial data.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h3>7.3 Layout principles</h3>
+    <ul>
+      <li><strong>Generous whitespace</strong> — breathing room signals confidence and care. Every crowded section reads as anxiety, not impact</li>
+      <li><strong>One idea per section</strong> — no dense multi-column homepage blocks competing for attention</li>
+      <li><strong>Photography-led</strong> — authentic field imagery is the hero, not decoration. Mitta's existing gallery photos are strong enough</li>
+      <li><strong>Sticky donate bar</strong> on mobile (bottom) and desktop (top-right) — the donation intent window is short, the mechanism must always be visible</li>
+      <li><strong>Human eye contact</strong> in hero imagery — biologically proven to increase trust and donation intent by 20&ndash;30%</li>
+    </ul>
+  </section>
+ 
+  <!-- SECTION 11 — CONCLUSION -->
+  <section class="part">
+    <span class="sec-num">08 &mdash; Final Conclusion</span>
+    <h2>What changes. And why it matters.</h2>
+ 
+    <h3>After these fixes</h3>
+    <ul>
+      <li>A first-time visitor will understand Mitta's mission, see proof of its impact, and find a working, reassuring donation flow — all within 30 seconds</li>
+      <li>The website will stop leaking donor intent and start <strong>converting it</strong></li>
+      <li>Mitta will move from "a small NGO with a broken site" to <strong>"a credible institution with a clear story and a transparent ask"</strong></li>
+      <li>The organisation will gain a compounding content asset that grows its trust and donor base year over year</li>
+    </ul>
+ 
+    <h3>Why this matters for global positioning</h3>
+    <p>NGOs today compete for attention in the same feed as Charity: Water, GiveDirectly, and UNICEF. Donors — especially younger, digital-native, diaspora, and corporate donors — benchmark unconsciously. A website that doesn't meet global standards is quietly disqualified, regardless of the quality of work on the ground.</p>
+    <p>Mitta's real-world work already deserves that league. The redesign is simply the act of <strong>making the digital presence match the truth of the work.</strong></p>
+ 
+    <div class="brutal">
+      The goal is not a prettier website. The goal is a website that is <strong>finally worthy of the work Mitta is already doing</strong>.
+    </div>
+  </section>
+ 
+ 
+  <!-- ============================================ -->
   <!-- SECTION 07 — RECOMMENDATIONS -->
   <section class="part">
-    <span class="sec-num">07 — Strategic Recommendations</span>
+    <span class="sec-num">09 &mdash; Strategic Recommendations</span>
     <h2>Sequenced by urgency and impact.</h2>
-
+ 
     <div class="phase-list">
       <div class="phase-item">
         <div class="phase-head">
@@ -490,7 +757,7 @@ footer.doc-foot strong{color:var(--ink)}
           </ul>
         </div>
       </div>
-
+ 
       <div class="phase-item">
         <div class="phase-head">
           <div class="ph-num">B</div>
@@ -509,7 +776,7 @@ footer.doc-foot strong{color:var(--ink)}
           </ul>
         </div>
       </div>
-
+ 
       <div class="phase-item">
         <div class="phase-head">
           <div class="ph-num">C</div>
@@ -527,7 +794,7 @@ footer.doc-foot strong{color:var(--ink)}
           </ul>
         </div>
       </div>
-
+ 
       <div class="phase-item">
         <div class="phase-head">
           <div class="ph-num">D</div>
@@ -547,12 +814,23 @@ footer.doc-foot strong{color:var(--ink)}
       </div>
     </div>
   </section>
-
-  <!-- SECTION 08 — WEBSITE BLUEPRINT -->
+ 
+  <!-- APPENDIX — moved to bottom per restructure -->
+  <!-- ============================================ -->
+  <div style="margin:120px 0 56px;padding-top:40px;border-top:2px solid var(--line-s)">
+    <div style="display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:16px">
+      <span style="display:inline-block;width:28px;height:2px;background:var(--subtle)"></span>
+      Appendix &middot; Backup Proof
+    </div>
+    <h2 style="font-size:28px;font-weight:600;letter-spacing:-.022em;color:var(--ink-soft);margin:0 0 12px;line-height:1.2">Detailed audit evidence — available if you want to verify any specific claim.</h2>
+    <p style="font-size:15.5px;color:var(--muted);max-width:720px;margin:0;line-height:1.6">The sections above are the main story. Everything below is the underlying evidence: the full donor-journey walkthroughs, the complete trust-audit table, and the donation-system gap analysis. Most readers will not need this section — it exists so every claim made above is traceable to specific, live-site proof.</p>
+  </div>
+ 
+  <!-- APPENDIX A — WEBSITE BLUEPRINT (moved from main body per swap) -->
   <section class="part">
-    <span class="sec-num">08 — Website Blueprint</span>
+    <span class="sec-num">Appendix A &middot; Website Blueprint</span>
     <h2>A new homepage, section by section.</h2>
-
+ 
     <div class="bp-grid">
       <div class="bp-card">
         <h4>1 &middot; Hero</h4>
@@ -616,115 +894,82 @@ footer.doc-foot strong{color:var(--ink)}
       </div>
     </div>
   </section>
-
-  <!-- SECTION 09 — DESIGN SYSTEM -->
+ 
+  <!-- APPENDIX B — TRUST AUDIT -->
   <section class="part">
-    <span class="sec-num">09 — Design System</span>
-    <h2>The signalling layer, engineered for donor trust.</h2>
-    <p>The design system must do one job: make a first-time visitor feel that Mitta is real, trustworthy, and worth giving to within 30 seconds of landing.</p>
-
-    <h3>9.1 Colour Palette</h3>
-    <div class="palette">
-      <div class="chip"><div class="color" style="background:#0A3A66"></div><div class="label"><b>Deep Trust Blue</b><span class="hex">#0A3A66 &middot; Primary</span></div></div>
-      <div class="chip"><div class="color" style="background:#F7F4EE"></div><div class="label"><b>Soft Ivory</b><span class="hex">#F7F4EE &middot; Background</span></div></div>
-      <div class="chip"><div class="color" style="background:#C8823A"></div><div class="label"><b>Warm Amber</b><span class="hex">#C8823A &middot; Accent/CTA</span></div></div>
-      <div class="chip"><div class="color" style="background:#1C1C1C"></div><div class="label"><b>Charcoal</b><span class="hex">#1C1C1C &middot; Body text</span></div></div>
-      <div class="chip"><div class="color" style="background:#2F7A5C"></div><div class="label"><b>Muted Green</b><span class="hex">#2F7A5C &middot; Success</span></div></div>
-    </div>
+    <span class="sec-num">Appendix B &middot; Trust &amp; Credibility Audit</span>
+    <h2>What the site signals vs. what it should signal.</h2>
+ 
+    <h3>Trust signals present</h3>
+    <ul>
+      <li><strong>FCRA Registration 368140126</strong> — displayed in header and footer on every page. Legally significant and a major credibility anchor for Indian donors</li>
+      <li><strong>Real founding story</strong> — Dr. Mitta Srinivas Rao &amp; Dr. Mitta Swatantrakala, founded 2006. Authentic, emotionally resonant, and unique</li>
+      <li><strong>Real gallery photographs</strong> — hospital equipment donations, classroom renovations, children receiving books. Verifiable field documentation</li>
+      <li><strong>Google Maps embed</strong> — real office address in Hyderabad, verifiable</li>
+      <li><strong>Physical address, phone, and email</strong> consistent across all pages</li>
+    </ul>
+ 
+    <h3>Trust-breaking moments</h3>
     <div class="t-wrap">
       <table>
-        <thead><tr><th>Role</th><th>Colour</th><th>Psychological function</th></tr></thead>
+        <thead><tr><th>Moment</th><th>Why it breaks trust</th><th>Severity</th></tr></thead>
         <tbody>
-          <tr><td>Primary</td><td>Deep Trust Blue #0A3A66</td><td>Universal colour of institutional trust (UN, hospitals, universities). Signals maturity and permanence, not corporate coldness.</td></tr>
-          <tr><td>Background</td><td>Soft Ivory #F7F4EE</td><td>Warm off-white. Feels humanitarian and editorial, not sterile. Reduces cognitive strain during reading.</td></tr>
-          <tr><td>Accent / CTA</td><td>Warm Amber #C8823A</td><td>Triggers warmth, generosity, human light. Used on donate buttons and CTAs — drives action. Amber evokes harvest and community.</td></tr>
-          <tr><td>Body Text</td><td>Charcoal #1C1C1C</td><td>Higher readability than pure black. Softer, more approachable at scale.</td></tr>
-          <tr><td>Success</td><td>Muted Green #2F7A5C</td><td>For impact counters, confirmation states, and "money well spent" signals.</td></tr>
+          <tr><td><strong>Donate button leads to blank page</strong></td><td>The moment a donor is ready to act, the site fails them. This is the highest-cost failure per user on the site.</td><td class="sev-crit">CRITICAL</td></tr>
+          <tr><td><strong>Blank enquiry form</strong></td><td>Organisation appears unreachable. Partners and press have no path in.</td><td class="sev-crit">CRITICAL</td></tr>
+          <tr><td><strong>"Social Services" 404</strong></td><td>A primary nav item doesn't exist. Signals the site is abandoned.</td><td class="sev-crit">CRITICAL</td></tr>
+          <tr><td><strong>No financial transparency</strong></td><td>No annual report, no fund breakdown, no 80G/12A. US/global donors will not give to a financial black box.</td><td class="sev-crit">CRITICAL</td></tr>
+          <tr><td><strong>"childs education" — sitewide</strong></td><td>Elementary grammar error on every page signals low attention to detail.</td><td class="sev-high">HIGH</td></tr>
+          <tr><td><strong>Founder name misspelled</strong></td><td>"Swatatntrakala" — deeply unprofessional on the site's most important trust page.</td><td class="sev-high">HIGH</td></tr>
+          <tr><td><strong>No team or board page</strong></td><td>Anonymous leadership is a red flag for sophisticated donors and institutional funders.</td><td class="sev-high">HIGH</td></tr>
+          <tr><td><strong>Gallery photos have no captions</strong></td><td>Photos without location, date, and context feel like stock imagery even when they're real.</td><td class="sev-med">MEDIUM</td></tr>
+          <tr><td><strong>Copyright reads 2024</strong></td><td>Site appears abandoned. May be one year out of date.</td><td class="sev-med">MEDIUM</td></tr>
         </tbody>
       </table>
     </div>
-
-    <h3>9.2 Typography</h3>
+ 
+    <h3>Missing trust elements</h3>
+    <ul>
+      <li>80G / 12A tax exemption certificate (critical for Indian donors claiming deductions)</li>
+      <li>US 501(c)(3) or equivalent for American diaspora donors</li>
+      <li>Named board members or advisors with photos and bios</li>
+      <li>Annual impact report (even a 2-page PDF)</li>
+      <li>Bank account details or UPI QR code as a fallback donation method</li>
+      <li>Testimonials from beneficiaries with verifiable names and locations</li>
+    </ul>
+  </section>
+ 
+  <!-- APPENDIX C — DONATION EXPERIENCE -->
+  <section class="part">
+    <span class="sec-num">Appendix C &middot; Donation Experience</span>
+    <h2>What a world-class giving flow looks like vs. today.</h2>
+ 
+    <h3>What is missing</h3>
     <div class="t-wrap">
       <table>
-        <thead><tr><th>Role</th><th>Typeface</th><th>Why it works</th></tr></thead>
+        <thead><tr><th>Missing Element</th><th>Why it matters</th><th>Priority</th></tr></thead>
         <tbody>
-          <tr><td>Display / Headlines</td><td><strong>Fraunces</strong> (optical serif)</td><td>Serif headlines signal editorial credibility, heritage, and humanity — the opposite of a corporate template. Fraunces has warmth without nostalgia.</td></tr>
-          <tr><td>Body / UI</td><td><strong>Inter</strong> (sans-serif)</td><td>Neutral, highly legible, modern. Trusted by premium publications and global NGOs. Open-source and widely supported.</td></tr>
-          <tr><td>Numbers / Impact</td><td><strong>Inter Bold Tabular</strong></td><td>Clean tabular figures for impact counters, amounts, and financial data.</td></tr>
+          <tr><td><strong>Payment gateway</strong> (Razorpay / PayPal / Stripe)</td><td>Without this, donating is literally impossible. This is the #1 revenue fix.</td><td class="sev-crit">P0</td></tr>
+          <tr><td><strong>Suggested amounts</strong> (&#8377;500 / &#8377;2,000 / &#8377;10,000 / Custom)</td><td>Reduces decision fatigue. Anchors giving at a higher amount. Standard on every major NGO site.</td><td class="sev-crit">P0</td></tr>
+          <tr><td><strong>Impact-per-amount framing</strong></td><td>"&#8377;1,500 funds one child's education for a month" converts visitors. Generic "your donation helps" does not.</td><td class="sev-crit">P0</td></tr>
+          <tr><td><strong>80G / tax benefit information</strong></td><td>Indian donors legally require this to claim deductions. Its absence is a legal and psychological barrier.</td><td class="sev-crit">P0</td></tr>
+          <tr><td><strong>FCRA number on donate page</strong></td><td>International donors need this to verify legal compliance. It exists in the header but not on the donation flow.</td><td class="sev-high">P1</td></tr>
+          <tr><td><strong>Recurring donation option</strong></td><td>Monthly donors are 3&ndash;5x more valuable than one-time givers. This segment is entirely unaddressed.</td><td class="sev-high">P1</td></tr>
+          <tr><td><strong>Bank / UPI fallback</strong></td><td>Minimum viable donation path. Even if gateway setup takes time, bank details published immediately enable giving.</td><td class="sev-high">P1</td></tr>
+          <tr><td><strong>Confirmation &amp; receipt flow</strong></td><td>Proof of giving, compliance requirement, and the beginning of the donor relationship. Does not exist.</td><td class="sev-med">P2</td></tr>
         </tbody>
       </table>
     </div>
-
-    <h3>9.3 Layout principles</h3>
-    <ul>
-      <li><strong>Generous whitespace</strong> — breathing room signals confidence and care. Every crowded section reads as anxiety, not impact</li>
-      <li><strong>One idea per section</strong> — no dense multi-column homepage blocks competing for attention</li>
-      <li><strong>Photography-led</strong> — authentic field imagery is the hero, not decoration. Mitta's existing gallery photos are strong enough</li>
-      <li><strong>Sticky donate bar</strong> on mobile (bottom) and desktop (top-right) — the donation intent window is short, the mechanism must always be visible</li>
-      <li><strong>Human eye contact</strong> in hero imagery — biologically proven to increase trust and donation intent by 20&ndash;30%</li>
-    </ul>
-  </section>
-
-  <!-- SECTION 10 — CONTENT STRATEGY -->
-  <section class="part">
-    <span class="sec-num">10 — Content &amp; Storytelling Strategy</span>
-    <h2>How Mitta should communicate.</h2>
-
-    <h3>Voice and framing</h3>
-    <ul>
-      <li><strong>Voice:</strong> Warm, grounded, confident. Not corporate. Not saviour-toned. The founders grew up in poverty — this voice is already authentic to them</li>
-      <li><strong>Tense:</strong> Present and specific. "Today, in Gudimalkapur, Priya walked into her first classroom" beats "We are committed to education"</li>
-      <li><strong>Structure:</strong> Beneficiary-first, not organisation-first. The story of one child converts more than ten paragraphs of mission copy</li>
-      <li><strong>Evidence:</strong> Every emotional claim must be paired with a number or a name. Vague sincerity without proof is indistinguishable from fiction</li>
-    </ul>
-
-    <h3>Founder story — deploy at three layers</h3>
-    <ol>
-      <li><strong>Homepage</strong> — 4-line note with founder photo, linking to the full story</li>
-      <li><strong>About page</strong> — full narrative with photos of the founders, timeline of the foundation's growth</li>
-      <li><strong>Donation confirmation page</strong> — personal thank-you from the founder, perceived as handwritten</li>
-    </ol>
-
-    <h3>Impact storytelling system</h3>
-    <p>Build a repeatable content engine that compounds over time:</p>
-    <ul>
-      <li><strong>One story per month</strong>, structured identically: Who &rarr; Before &rarr; Intervention &rarr; After &rarr; What's next</li>
-      <li>Each story becomes: homepage feature &rarr; blog post &rarr; Instagram carousel &rarr; donor email update</li>
-      <li>Archive into a permanent <strong>Story Library</strong> — this compounds over years and becomes a trust moat that no competitor can replicate</li>
-      <li>The School Enlightenment page already has the structure right — specific schools, specific rupee amounts, specific years. This model should be applied everywhere</li>
-    </ul>
-
-    <div class="pull"><p>Mitta has the substance — real work, real impact, a real founding story. The redesign is primarily a <em>signalling upgrade</em>, not a content invention. The work exists. The website needs to finally be worthy of it.</p></div>
-  </section>
-
-  <!-- SECTION 11 — CONCLUSION -->
-  <section class="part">
-    <span class="sec-num">11 — Final Conclusion</span>
-    <h2>What changes. And why it matters.</h2>
-
-    <h3>After these fixes</h3>
-    <ul>
-      <li>A first-time visitor will understand Mitta's mission, see proof of its impact, and find a working, reassuring donation flow — all within 30 seconds</li>
-      <li>The website will stop leaking donor intent and start <strong>converting it</strong></li>
-      <li>Mitta will move from "a small NGO with a broken site" to <strong>"a credible institution with a clear story and a transparent ask"</strong></li>
-      <li>The organisation will gain a compounding content asset that grows its trust and donor base year over year</li>
-    </ul>
-
-    <h3>Why this matters for global positioning</h3>
-    <p>NGOs today compete for attention in the same feed as Charity: Water, GiveDirectly, and UNICEF. Donors — especially younger, digital-native, diaspora, and corporate donors — benchmark unconsciously. A website that doesn't meet global standards is quietly disqualified, regardless of the quality of work on the ground.</p>
-    <p>Mitta's real-world work already deserves that league. The redesign is simply the act of <strong>making the digital presence match the truth of the work.</strong></p>
-
+ 
     <div class="brutal">
-      The goal is not a prettier website. The goal is a website that is <strong>finally worthy of the work Mitta is already doing</strong>.
+      The organisation is losing real donor money <strong>every single day</strong> the donation page remains blank. This is not a design or content problem. It is a revenue emergency that requires a Razorpay or PayPal integration — not a redesign — to fix within this week.
     </div>
   </section>
-
+ 
   <footer class="doc-foot">
     <span><strong>Mitta Foundation</strong> &middot; Website Strategy &amp; Redesign Report &middot; Final v2.0</span>
     <span>April 2026 &middot; Prepared by Strategy &amp; UX Consulting</span>
   </footer>
-
+ 
 </div>
 </body>
 </html>
